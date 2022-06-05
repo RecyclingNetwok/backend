@@ -23,14 +23,16 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.project.backend.admin.Admin;
-import com.project.backend.admin.AdminRepository;
-import com.project.backend.collector.Collector;
-import com.project.backend.collector.CollectorRepository;
-import com.project.backend.company.Company;
-import com.project.backend.company.CompanyRepository;
-import com.project.backend.household.Household;
-import com.project.backend.household.HouseholdRepository;
+import com.project.backend.actors.admin.Admin;
+import com.project.backend.actors.admin.AdminRepository;
+import com.project.backend.actors.collector.Collector;
+import com.project.backend.actors.collector.CollectorRepository;
+import com.project.backend.actors.company.Company;
+import com.project.backend.actors.company.CompanyRepository;
+import com.project.backend.actors.household.Household;
+import com.project.backend.actors.household.HouseholdRepository;
+import com.project.backend.actors.organization.Organization;
+import com.project.backend.actors.organization.OrganizationRepository;
 import com.project.backend.login.models.ERole;
 import com.project.backend.login.models.Role;
 import com.project.backend.login.models.User;
@@ -42,8 +44,6 @@ import com.project.backend.login.response.MessageResponse;
 import com.project.backend.login.response.UserInfoResponse;
 import com.project.backend.login.security.jwt.JwtUtils;
 import com.project.backend.login.security.service.UserDetailsImpl;
-import com.project.backend.organization.Organization;
-import com.project.backend.organization.OrganizationRepository;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController

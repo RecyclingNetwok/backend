@@ -287,7 +287,7 @@ public class AuthController {
 		}
 		// Create new collector's account
 		Collector collector = new Collector(signUpRequest.getUsername(), signUpRequest.getEmail(),
-				signUpRequest.getPassword(), signUpRequest.getAdress(), signUpRequest.getPhone(),
+				encoder.encode(signUpRequest.getPassword()), signUpRequest.getAdress(), signUpRequest.getPhone(),
 				signUpRequest.isVerified());
 		
 		//Get company

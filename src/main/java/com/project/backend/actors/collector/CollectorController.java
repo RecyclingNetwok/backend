@@ -23,6 +23,11 @@ public class CollectorController {
 		this.collectorService = collectorService;
 	}
 	
+	@GetMapping("count")
+	public Long Count() {
+		return collectorService.count();
+	}
+	
 	@GetMapping
 	public List<Collector> getAllCollectors(){
 		return collectorService.getAllCollectors();

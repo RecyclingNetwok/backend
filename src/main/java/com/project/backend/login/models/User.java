@@ -49,13 +49,19 @@ public class User {
 	public User() {
 	}
 
-	public User(String username, String email, String password) {
+	public User(@NotBlank @Size(max = 20) String username, @NotBlank @Size(max = 50) @Email String email,
+			@NotBlank @Size(max = 120) String password) {
+		super();
 		this.username = username;
 		this.email = email;
 		this.password = password;
+		setCreateOn(LocalDate.now());
 	}
 
-	public User(String username, String email, String password, String adress, Long phone, boolean verified) {
+	public User( @NotBlank @Size(max = 20) String username, @NotBlank @Size(max = 50) @Email String email,
+			@NotBlank @Size(max = 120) String password, @Size(max = 120) String adress, Long phone,
+			@NotNull boolean verified) {
+		super();
 		this.username = username;
 		this.email = email;
 		this.password = password;
@@ -64,6 +70,10 @@ public class User {
 		this.verified = verified;
 		setCreateOn(LocalDate.now());
 	}
+
+
+
+
 
 	public Long getId() {
 		return id;

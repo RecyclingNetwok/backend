@@ -15,6 +15,10 @@ public class OrganizationService {
 	public OrganizationService(OrganizationRepository organizationRepository) {
 		this.organizationRepository = organizationRepository;
 	}
+
+	public long count() {
+		return organizationRepository.count();
+	}
 	
 	public List<Organization> getAllOrganizations(){
 		return (List<Organization>) organizationRepository.findAll();

@@ -15,6 +15,10 @@ public class HouseholdService {
 	public HouseholdService(HouseholdRepository householdRepository) {
 		this.householdRepository = householdRepository;
 	}
+
+	public long count() {
+		return householdRepository.count();
+	}
 	
 	public List<Household> getAllHouseholds(){
 		return (List<Household>) householdRepository.findAll();

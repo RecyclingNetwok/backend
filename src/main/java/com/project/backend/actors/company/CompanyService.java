@@ -17,6 +17,10 @@ private final CompanyRepository companyRepository;
 		this.companyRepository = companyRepository;
 	}
 	
+	public long count() {
+		return companyRepository.count();
+	}
+	
 	public List<Company> getAllCompanys(){
 		return (List<Company>) companyRepository.findAll();
 	}

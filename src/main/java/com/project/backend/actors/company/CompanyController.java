@@ -23,6 +23,11 @@ public class CompanyController {
 		this.companyService = companyService;
 	}
 	
+	@GetMapping("count")
+	public Long Count() {
+		return companyService.count();
+	}
+	
 	@GetMapping
 	public List<Company> getAllCompanys(){
 		return companyService.getAllCompanys();

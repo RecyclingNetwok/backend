@@ -25,6 +25,11 @@ public class HouseholdController {
 	public HouseholdController(HouseholdService householdService) {
 		this.householdService = householdService;
 	}
+
+	@GetMapping("count")
+	public Long Count() {
+		return householdService.count();
+	}
 	
 	@GetMapping
 	public List<Household> getAllHouseholds(){

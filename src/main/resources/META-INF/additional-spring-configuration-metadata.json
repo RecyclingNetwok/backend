@@ -1,5 +1,27 @@
-{"properties": [{
-  "name": "bezkoder.app.jwtCookieName",
-  "type": "java.lang.String",
-  "description": "A description for 'bezkoder.app.jwtCookieName'"
-}]}
+{"properties": [
+  {
+    "name": "bezkoder.app.jwtCookieName",
+    "type": "java.lang.String",
+    "description": "A description for 'bezkoder.app.jwtCookieName'"
+  },
+  {
+    "name": "login.app.jwtSecret",
+    "type": "java.lang.String",
+    "description": "A description for 'login.app.jwtSecret'"
+  },
+  {
+    "name": "login.app.jwtCookieName",
+    "type": "java.lang.String",
+    "description": "A description for 'login.app.jwtCookieName'"
+  },
+  {
+    "name": "login.app.jwtExpirationMs",
+    "type": "java.lang.String",
+    "description": "A description for 'login.app.jwtExpirationMs'"
+  },
+  {
+    "name": "login.app.jwtCookieName",
+    "type": "java.lang.String",
+    "description": "A description for 'login.app.jwtCookieName'"
+  }
+]}

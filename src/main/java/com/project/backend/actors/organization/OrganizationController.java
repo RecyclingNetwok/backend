@@ -23,6 +23,11 @@ public class OrganizationController {
 	public OrganizationController(OrganizationService organizationService) {
 		this.organizationService = organizationService;
 	}
+
+	@GetMapping("count")
+	public Long Count() {
+		return organizationService.count();
+	}
 	
 	@GetMapping
 	public List<Organization> getAllOrganizations(){

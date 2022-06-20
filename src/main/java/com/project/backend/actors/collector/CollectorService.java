@@ -16,6 +16,10 @@ private final CollectorRepository collectorRepository;
 		this.collectorRepository = collectorRepository;
 	}
 	
+	public long count() {
+		return collectorRepository.count();
+	}
+	
 	public List<Collector> getAllCollectors(){
 		return (List<Collector>) collectorRepository.findAll();
 	}

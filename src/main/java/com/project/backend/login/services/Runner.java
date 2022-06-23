@@ -26,12 +26,16 @@ public class Runner implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
 		Role r1 = new Role(ERole.ROLE_ADMIN);
-		Role r2 = new Role(ERole.ROLE_MODERATOR);
-		Role r3 = new Role(ERole.ROLE_USER);
+		Role r2 = new Role(ERole.ROLE_HOUSEHOLD);
+		Role r3 = new Role(ERole.ROLE_COMPANY);
+		Role r4 = new Role(ERole.ROLE_COLLECTOR);
+		Role r5 = new Role(ERole.ROLE_ORGANIZATION);
 		
 		roleRepository.save(r1);
 		roleRepository.save(r2);
 		roleRepository.save(r3);
+		roleRepository.save(r4);
+		roleRepository.save(r5);
 		
 		
 	}

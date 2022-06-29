@@ -33,7 +33,7 @@ public class Company extends User {
 	@JoinTable( name = "household_following", joinColumns = @JoinColumn(referencedColumnName = "company_id"), inverseJoinColumns = @JoinColumn(referencedColumnName = "household_id"))
 	private Set<Household> hhdFollowers = new HashSet<>();
 
-	@JoinTable( name = "org_ollowing", joinColumns = @JoinColumn(referencedColumnName = "company_id"), inverseJoinColumns = @JoinColumn(referencedColumnName = "organization_id"))
+	@JoinTable( name = "org_following", joinColumns = @JoinColumn(referencedColumnName = "company_id"), inverseJoinColumns = @JoinColumn(referencedColumnName = "organization_id"))
 	private Set<Organization> orgFollowers = new HashSet<>();
 	
 	public Company() {

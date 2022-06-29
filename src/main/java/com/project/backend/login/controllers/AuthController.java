@@ -129,6 +129,11 @@ public class AuthController {
 							.orElseThrow(() -> new RuntimeException("Error: Role COMPANY is not found."));
 					roles.add(comRole);
 					break;
+				case "col":
+					Role colRole = roleRepository.findByName(ERole.ROLE_COLLECTOR)
+							.orElseThrow(() -> new RuntimeException("Error: Role COMPANY is not found."));
+					roles.add(colRole);
+					break;
 				default:
 					Role userRole = roleRepository.findByName(ERole.ROLE_HOUSEHOLD)
 							.orElseThrow(() -> new RuntimeException("Error: Role USER is not found."));

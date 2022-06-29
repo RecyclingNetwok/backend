@@ -31,11 +31,13 @@ public class Runner implements CommandLineRunner {
 		Role r4 = new Role(ERole.ROLE_COLLECTOR);
 		Role r5 = new Role(ERole.ROLE_ORGANIZATION);
 		
-		roleRepository.save(r1);
-		roleRepository.save(r2);
-		roleRepository.save(r3);
-		roleRepository.save(r4);
-		roleRepository.save(r5);
+		if ( roleRepository.findByName(r1.getName() ).isEmpty() ) {
+			roleRepository.save(r1);
+			roleRepository.save(r2);
+			roleRepository.save(r3);
+			roleRepository.save(r4);
+			roleRepository.save(r5);
+		}
 		
 		
 	}

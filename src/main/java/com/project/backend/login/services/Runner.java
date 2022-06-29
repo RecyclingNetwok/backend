@@ -31,7 +31,9 @@ public class Runner implements CommandLineRunner {
 		Role r4 = new Role(ERole.ROLE_COLLECTOR);
 		Role r5 = new Role(ERole.ROLE_ORGANIZATION);
 		
-		if ( roleRepository.findByName(r1.getName()).isEmpty() ) {
+		if ( roleRepository.findByName(r1.getName()).isPresent() ) {
+			
+		}else {
 			roleRepository.save(r1);
 			roleRepository.save(r2);
 			roleRepository.save(r3);

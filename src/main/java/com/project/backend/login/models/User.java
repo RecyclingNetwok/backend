@@ -41,7 +41,6 @@ public class User {
 
 	private Long phone;
 
-	@NotNull
 	private boolean verified;
 
 	private LocalDate createOn;

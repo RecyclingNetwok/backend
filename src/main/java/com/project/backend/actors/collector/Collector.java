@@ -21,16 +21,16 @@ public class Collector extends User {
 	public Collector() {
 		super();
 	}
-
+	
 	public Collector(String username, String email, String password, String adress, Long phone,
 			boolean verified) {
 		super(username, email, password, adress, phone, verified);
 	}
-
+	
 	public Collector(String username, String email, String password) {
 		super(username, email, password);
 	}
-
+	
 //	public Company getCom() {
 //		return company;
 //	}

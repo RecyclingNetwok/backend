@@ -13,6 +13,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 import com.project.backend.actors.collector.Collector;
 import com.project.backend.login.models.User;
+import com.project.backend.services.post.Post;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -24,23 +25,26 @@ public class Company extends User {
 	
 	@OneToMany(mappedBy = "company", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Set<Collector> collectors = new HashSet<>();
-
+	
+	@OneToMany(mappedBy = "company", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	private Set<Post> posts = new HashSet<>();
+	
 	public Company() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-
+	
 	public Company(String username, String email, String password, String adress, Long phone, boolean verified,
 			String niu) {
 		super(username, email, password, adress, phone, verified);
 		NIU = niu;
 	}
-
+	
 	public Company(String username, String email, String password, String niu) {
 		super(username, email, password);
 		NIU = niu;
 	}
-
+	
 	public String getNIU() {
 		return NIU;
 	}
@@ -55,6 +59,14 @@ public class Company extends User {
 
 	public void setCollectors(Set<Collector> collectors) {
 		this.collectors = collectors;
+	}
+
+	public Set<Post> getPosts() {
+		return posts;
+	}
+
+	public void setPosts(Set<Post> posts) {
+		this.posts = posts;
 	}
 
 }

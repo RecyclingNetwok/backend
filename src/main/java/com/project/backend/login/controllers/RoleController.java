@@ -16,7 +16,7 @@ import com.project.backend.login.services.RoleService;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
-@RequestMapping("/api/login/roles")
+@RequestMapping("/api/auth/roles")
 public class RoleController {
 
 private final RoleService roleService;

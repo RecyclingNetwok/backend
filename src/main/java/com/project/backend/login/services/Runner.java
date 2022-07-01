@@ -25,11 +25,11 @@ public class Runner implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
-		Role r1 = new Role(ERole.ROLE_ADMIN);
-		Role r2 = new Role(ERole.ROLE_HOUSEHOLD);
-		Role r3 = new Role(ERole.ROLE_COMPANY);
-		Role r4 = new Role(ERole.ROLE_COLLECTOR);
-		Role r5 = new Role(ERole.ROLE_ORGANIZATION);
+		Role r1 = new Role(ERole.admin);
+		Role r2 = new Role(ERole.hhd);
+		Role r3 = new Role(ERole.com);
+		Role r4 = new Role(ERole.col);
+		Role r5 = new Role(ERole.org);
 		
 		if ( roleRepository.findByName(r1.getName()).isPresent() ) {
 			

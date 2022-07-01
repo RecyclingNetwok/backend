@@ -115,27 +115,27 @@ public class AuthController {
 			strRoles.forEach(role -> {
 				switch (role) {
 				case "admin":
-					Role adminRole = roleRepository.findByName(ERole.admin)
+					Role adminRole = roleRepository.findByName(ERole.Administrateur)
 							.orElseThrow(() -> new RuntimeException("Error: Role ADMIN is not found."));
 					roles.add(adminRole);
 					break;
 				case "org":
-					Role orgRole = roleRepository.findByName(ERole.org)
+					Role orgRole = roleRepository.findByName(ERole.Organisation)
 							.orElseThrow(() -> new RuntimeException("Error: Role ORGANIZATION is not found."));
 					roles.add(orgRole);
 					break;
 				case "com":
-					Role comRole = roleRepository.findByName(ERole.com)
+					Role comRole = roleRepository.findByName(ERole.Entrepise)
 							.orElseThrow(() -> new RuntimeException("Error: Role COMPANY is not found."));
 					roles.add(comRole);
 					break;
 				case "col":
-					Role colRole = roleRepository.findByName(ERole.col)
+					Role colRole = roleRepository.findByName(ERole.Collecteur)
 							.orElseThrow(() -> new RuntimeException("Error: Role COLLECTOR is not found."));
 					roles.add(colRole);
 					break;
 				default:
-					Role userRole = roleRepository.findByName(ERole.hhd)
+					Role userRole = roleRepository.findByName(ERole.Menage)
 							.orElseThrow(() -> new RuntimeException("Error: Role HOUSEHOLD is not found."));
 					roles.add(userRole);
 				}

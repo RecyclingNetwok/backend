@@ -92,50 +92,50 @@ public class AuthController {
 	public ResponseEntity<?> registerUser(@Valid @RequestBody SignupRequest signUpRequest) {
 		String user_type = signUpRequest.getUser_type();
 		switch (user_type) {
-		case "hhd":
+		case "Menage":
 			return registerHousehold(signUpRequest);
-		case "org":
+		case "Organisation":
 			return registerOrganization(signUpRequest);
-		case "com":
+		case "Entreprise":
 			return registerCompany(signUpRequest);
-		case "col":
+		case "Collecteur":
 			return registerCollector(signUpRequest);
 		default:
-			return registerAdmin(signUpRequest);
+			return registerAdmin(signUpRequest);//Admnistrateur
 		}
 	}
 	
 	public Set<Role> setRoles(Set<String> strRoles){
 		Set<Role> roles = new HashSet<>();
 		
-		if (strRoles == null || ( !strRoles.contains("admin") && !strRoles.contains("org") && !strRoles.contains("com") && !strRoles.contains("col") && !strRoles.contains("hhd") ) ) {
+		if (strRoles == null || ( !strRoles.contains("Admnistrateur") && !strRoles.contains("Organisation") && !strRoles.contains("Entreprise") && !strRoles.contains("Collecteur") && !strRoles.contains("Menage") ) ) {
 			throw new RuntimeException("Role Not Found ! Please Enter a valid role :<br> 'admin' for Administrator<br> 'org' for Organization<br> "
 					+ "'com' for Company<br> 'col' for Collctor <br> 'hhd' for Household " );
 		} else {
 			strRoles.forEach(role -> {
 				switch (role) {
-				case "admin":
-					Role adminRole = roleRepository.findByName(ERole.Administrateur)
+				case "Admnistrateur":
+					Role adminRole = roleRepository.findByName(ERole.ADMINISTRATEUR)
 							.orElseThrow(() -> new RuntimeException("Error: Role ADMIN is not found."));
 					roles.add(adminRole);
 					break;
-				case "org":
-					Role orgRole = roleRepository.findByName(ERole.Organisation)
+				case "Organisation":
+					Role orgRole = roleRepository.findByName(ERole.ORGANISATION)
 							.orElseThrow(() -> new RuntimeException("Error: Role ORGANIZATION is not found."));
 					roles.add(orgRole);
 					break;
-				case "com":
-					Role comRole = roleRepository.findByName(ERole.Entrepise)
+				case "Entreprise":
+					Role comRole = roleRepository.findByName(ERole.ENTREPRISE)
 							.orElseThrow(() -> new RuntimeException("Error: Role COMPANY is not found."));
 					roles.add(comRole);
 					break;
-				case "col":
-					Role colRole = roleRepository.findByName(ERole.Collecteur)
+				case "Collecteur":
+					Role colRole = roleRepository.findByName(ERole.COLLECTEUR)
 							.orElseThrow(() -> new RuntimeException("Error: Role COLLECTOR is not found."));
 					roles.add(colRole);
 					break;
 				default:
-					Role userRole = roleRepository.findByName(ERole.Menage)
+					Role userRole = roleRepository.findByName(ERole.MENAGE)
 							.orElseThrow(() -> new RuntimeException("Error: Role HOUSEHOLD is not found."));
 					roles.add(userRole);
 				}

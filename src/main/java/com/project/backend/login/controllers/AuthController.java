@@ -224,6 +224,7 @@ public class AuthController {
 				encoder.encode(signUpRequest.getPassword()), signUpRequest.getAdress(), signUpRequest.getPhone(),
 				signUpRequest.isVerified(), signUpRequest.getNIU());
 		Set<String> strRoles = signUpRequest.getRole();
+		System.out.println(strRoles);
 		Set<Role> roles = new HashSet<>();
 
 		roles = setRoles(strRoles);

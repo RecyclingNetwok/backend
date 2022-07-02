@@ -101,20 +101,20 @@ public class AuthController {
 		case "Collecteur":
 			return registerCollector(signUpRequest);
 		default:
-			return registerAdmin(signUpRequest);//Admnistrateur
+			return registerAdmin(signUpRequest);//Administrateur
 		}
 	}
 	
 	public Set<Role> setRoles(Set<String> strRoles){
 		Set<Role> roles = new HashSet<>();
 		
-		if (strRoles == null || ( !strRoles.contains("Admnistrateur") && !strRoles.contains("Organisation") && !strRoles.contains("Entreprise") && !strRoles.contains("Collecteur") && !strRoles.contains("Menage") ) ) {
+		if (strRoles == null || ( !strRoles.contains("Administrateur") && !strRoles.contains("Organisation") && !strRoles.contains("Entreprise") && !strRoles.contains("Collecteur") && !strRoles.contains("Menage") ) ) {
 			throw new RuntimeException("Role Not Found ! Please Enter a valid role :<br> 'admin' for Administrator<br> 'org' for Organization<br> "
 					+ "'com' for Company<br> 'col' for Collctor <br> 'hhd' for Household " );
 		} else {
 			strRoles.forEach(role -> {
 				switch (role) {
-				case "Admnistrateur":
+				case "Administrateur":
 					Role adminRole = roleRepository.findByName(ERole.Administrateur)
 							.orElseThrow(() -> new RuntimeException("Error: Role ADMIN is not found."));
 					roles.add(adminRole);

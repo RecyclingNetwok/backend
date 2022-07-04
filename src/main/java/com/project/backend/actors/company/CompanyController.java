@@ -2,12 +2,16 @@ package com.project.backend.actors.company;
 
 import java.util.List;
 
+import javax.annotation.security.PermitAll;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -34,11 +38,13 @@ public class CompanyController {
 	}
 	
 	@PostMapping("/add")
-	public void addNewCompany(Company company) {
+	@PreAuthorize("hasAutority('Administrateur')")
+	public void addNewCompany(@RequestBody Company company) {
 		companyService.addNewCompany(company);
 	}
 	
 	@DeleteMapping("-{CompanyID}")
+	@PreAuthorize("hasAutority('Administrateur')")
 	public void deleteCompany(@PathVariable("CompanyID") Long id) {
 		companyService.deleteCompany(id);
 	}

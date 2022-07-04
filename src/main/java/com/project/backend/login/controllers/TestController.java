@@ -16,24 +16,25 @@ public class TestController {
 	}
 
 	@GetMapping("/household")
+	@PreAuthorize("hasAuthority('Menage')")	
 	public String householdAccess() {
 		return "Household Content.";
 	}
 
 	@GetMapping("/org")
-	@PreAuthorize("hasRole('MODERATOR')")
+	@PreAuthorize("hasAuthority('Organisation')")
 	public String orgAccess() {
 		return "Organization Content.";
 	}
 
 	@GetMapping("/mod")
-	@PreAuthorize("hasRole('MODERATOR')")
+	@PreAuthorize("hasAuthority('Entreprise')")
 	public String companyAccess() {
 		return "COMPANY Board.";
 	}
 
 	@GetMapping("/admin")
-	@PreAuthorize("hasRole('ADMIN')")
+	@PreAuthorize("hasAuthority('Administrateur')")
 	public String adminAccess() {
 		return "Admin Board.";
 	}

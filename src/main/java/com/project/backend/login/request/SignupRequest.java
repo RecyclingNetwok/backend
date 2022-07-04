@@ -13,6 +13,12 @@ public class SignupRequest {
 	
 	private Long com_id;
 	
+	private String avatarPath;
+	
+	private String showCasePath;
+	
+	private String logoPath;
+	
 	@NotBlank
 	@Size(min = 3, max = 20)
 	private String username;
@@ -46,6 +52,14 @@ public class SignupRequest {
 
 	public void setUsername(String username) {
 		this.username = username;
+	}
+
+	public String getAvatarPath() {
+		return avatarPath;
+	}
+
+	public void setAvatarPath(String avatarPath) {
+		this.avatarPath = avatarPath;
 	}
 
 	public String getEmail() {
@@ -94,6 +108,22 @@ public class SignupRequest {
 
 	public void setNIU(String nIU) {
 		niu = nIU;
+	}
+	
+	public String getShowCasePath() {
+		return showCasePath;
+	}
+
+	public void setShowCasePath(String showCasePath) {
+		this.showCasePath = showCasePath;
+	}
+
+	public String getLogoPath() {
+		return logoPath;
+	}
+
+	public void setLogoPath(String logoPath) {
+		this.logoPath = logoPath;
 	}
 
 	public String getAdress() {

@@ -39,8 +39,8 @@ public class OrganizationController {
 		organizationService.addNewOrganization(organization);
 	}
 	
-	@DeleteMapping
-	public void deleteOrganization(Long id) {
+	@DeleteMapping("-{OrganizationID}")
+	public void deleteOrganization(@PathVariable("OrganizationID") Long id) {
 		organizationService.deleteOrganization(id);
 	}
 	

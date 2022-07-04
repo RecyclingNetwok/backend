@@ -38,8 +38,8 @@ public class CollectorController {
 		collectorService.addNewCollector(collector);
 	}
 	
-	@DeleteMapping
-	public void deleteCollector(Long id) {
+	@DeleteMapping("-{CollectorID}")
+	public void deleteCollector(@PathVariable("CollectorID") Long id) {
 		collectorService.deleteCollector(id);
 	}
 	

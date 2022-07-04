@@ -41,8 +41,8 @@ public class HouseholdController {
 		householdService.addNewHousehold(household);
 	}
 	
-	@DeleteMapping
-	public void deleteHousehold(Long id) {
+	@DeleteMapping("-{HouseholdID}")
+	public void deleteHousehold(@PathVariable("HouseholdID") Long id) {
 		householdService.deleteHousehold(id);
 	}
 	

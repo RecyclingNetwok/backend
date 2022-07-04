@@ -84,8 +84,9 @@ public class AuthController {
 		List<String> roles = userDetails.getAuthorities().stream().map(item -> item.getAuthority())
 				.collect(Collectors.toList());
 
-		return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, jwtCookie.toString()).body(
-				new UserInfoResponse(userDetails.getId(), userDetails.getUsername(), userDetails.getEmail(), roles));
+		return ResponseEntity.ok().header(HttpHeaders.SET_COOKIE, jwtCookie.toString())
+				.body(new UserInfoResponse(userDetails.getId(), userDetails.getUserType(), userDetails.getAvatarPath(), userDetails.getLogoPath(),
+						userDetails.getShowCasePath(), userDetails.getUsername(), userDetails.getEmail(), roles));
 	}
 
 	@PostMapping("/signup")
@@ -101,16 +102,19 @@ public class AuthController {
 		case "Collecteur":
 			return registerCollector(signUpRequest);
 		default:
-			return registerAdmin(signUpRequest);//Administrateur
+			return registerAdmin(signUpRequest);// Administrateur
 		}
 	}
-	
-	public Set<Role> setRoles(Set<String> strRoles){
+
+	public Set<Role> setRoles(Set<String> strRoles) {
 		Set<Role> roles = new HashSet<>();
-		
-		if (strRoles == null || ( !strRoles.contains("Administrateur") && !strRoles.contains("Organisation") && !strRoles.contains("Entreprise") && !strRoles.contains("Collecteur") && !strRoles.contains("Menage") ) ) {
-			throw new RuntimeException("Role Not Found ! Please Enter a valid role :<br> 'admin' for Administrator<br> 'org' for Organization<br> "
-					+ "'com' for Company<br> 'col' for Collctor <br> 'hhd' for Household " );
+
+		if (strRoles == null || (!strRoles.contains("Administrateur") && !strRoles.contains("Organisation")
+				&& !strRoles.contains("Entreprise") && !strRoles.contains("Collecteur")
+				&& !strRoles.contains("Menage"))) {
+			throw new RuntimeException(
+					"Role Not Found ! Please Enter a valid role :<br> 'admin' for Administrator<br> 'org' for Organization<br> "
+							+ "'com' for Company<br> 'col' for Collctor <br> 'hhd' for Household ");
 		} else {
 			strRoles.forEach(role -> {
 				switch (role) {
@@ -141,9 +145,9 @@ public class AuthController {
 				}
 			});
 		}
-		
+
 		return roles;
-		
+
 	}
 
 	private ResponseEntity<MessageResponse> registerAdmin(@Valid SignupRequest signUpRequest) {
@@ -156,12 +160,12 @@ public class AuthController {
 		// Create new admin's account
 		Admin admin = new Admin(signUpRequest.getUsername(), signUpRequest.getEmail(),
 				encoder.encode(signUpRequest.getPassword()), signUpRequest.getAdress(), signUpRequest.getPhone(),
-				signUpRequest.isVerified() );
+				signUpRequest.isVerified(), signUpRequest.getAvatarPath());
 		Set<String> strRoles = signUpRequest.getRole();
 		Set<Role> roles = new HashSet<>();
-		
+
 		roles = setRoles(strRoles);
-		
+
 		admin.setRoles(roles);
 		adminRepository.save(admin);
 		return ResponseEntity.ok(new MessageResponse("Admin registered successfully!"));
@@ -178,12 +182,13 @@ public class AuthController {
 		// Create new user's account
 		Household household = new Household(signUpRequest.getUsername(), signUpRequest.getEmail(),
 				encoder.encode(signUpRequest.getPassword()), signUpRequest.getAdress(), signUpRequest.getPhone(),
-				signUpRequest.isVerified(), signUpRequest.getFamilyName());
+				signUpRequest.isVerified(), signUpRequest.getFamilyName(), signUpRequest.getAvatarPath());
+
 		Set<String> strRoles = signUpRequest.getRole();
 		Set<Role> roles = new HashSet<>();
 
 		roles = setRoles(strRoles);
-		
+
 		household.setRoles(roles);
 		householdRepository.save(household);
 		return ResponseEntity.ok(new MessageResponse("Household registered successfully!"));
@@ -200,18 +205,20 @@ public class AuthController {
 		// Create new org's account
 		Organization organization = new Organization(signUpRequest.getUsername(), signUpRequest.getEmail(),
 				encoder.encode(signUpRequest.getPassword()), signUpRequest.getAdress(), signUpRequest.getPhone(),
-				signUpRequest.isVerified(), signUpRequest.getNIU());
+				signUpRequest.isVerified(), signUpRequest.getNIU(), signUpRequest.getLogoPath(),
+				signUpRequest.getShowCasePath(), signUpRequest.getAvatarPath());
+
 		Set<String> strRoles = signUpRequest.getRole();
 		Set<Role> roles = new HashSet<>();
 
 		roles = setRoles(strRoles);
-		
+
 		organization.setRoles(roles);
 		organizationRepository.save(organization);
 		return ResponseEntity.ok(new MessageResponse("Organization registered successfully!"));
 
 	}
-	
+
 	private ResponseEntity<MessageResponse> registerCompany(@Valid SignupRequest signUpRequest) {
 		if (companyRepository.existsByUsername(signUpRequest.getUsername())) {
 			return ResponseEntity.badRequest().body(new MessageResponse("Error: Org's name is already taken!"));
@@ -222,19 +229,21 @@ public class AuthController {
 		// Create new org's account
 		Company company = new Company(signUpRequest.getUsername(), signUpRequest.getEmail(),
 				encoder.encode(signUpRequest.getPassword()), signUpRequest.getAdress(), signUpRequest.getPhone(),
-				signUpRequest.isVerified(), signUpRequest.getNIU());
+				signUpRequest.isVerified(), signUpRequest.getNIU(), signUpRequest.getLogoPath(),
+				signUpRequest.getShowCasePath(), signUpRequest.getAvatarPath());
+
 		Set<String> strRoles = signUpRequest.getRole();
 		System.out.println(strRoles);
 		Set<Role> roles = new HashSet<>();
 
 		roles = setRoles(strRoles);
-		
+
 		company.setRoles(roles);
 		companyRepository.save(company);
 		return ResponseEntity.ok(new MessageResponse("Company registered successfully!"));
 
 	}
-	
+
 	private ResponseEntity<MessageResponse> registerCollector(@Valid SignupRequest signUpRequest) {
 		if (collectorRepository.existsByUsername(signUpRequest.getUsername())) {
 			return ResponseEntity.badRequest().body(new MessageResponse("Error: Collector's name is already taken!"));
@@ -245,21 +254,21 @@ public class AuthController {
 		// Create new collector's account
 		Collector collector = new Collector(signUpRequest.getUsername(), signUpRequest.getEmail(),
 				encoder.encode(signUpRequest.getPassword()), signUpRequest.getAdress(), signUpRequest.getPhone(),
-				signUpRequest.isVerified());
-		
-		//Get company
+				signUpRequest.isVerified(), signUpRequest.getAvatarPath());
+
+		// Get company
 		Optional<Company> optionalCom = companyRepository.findById(signUpRequest.getCom_id());
-		if(!optionalCom.isPresent()) {
+		if (!optionalCom.isPresent()) {
 			return ResponseEntity.unprocessableEntity().build();
 		}
-		
+
 		collector.setCom(optionalCom.get());
-		
+
 		Set<String> strRoles = signUpRequest.getRole();
 		Set<Role> roles = new HashSet<>();
 
 		roles = setRoles(strRoles);
-		
+
 		collector.setRoles(roles);
 		collectorRepository.save(collector);
 		return ResponseEntity.ok(new MessageResponse("Collector registered successfully!"));

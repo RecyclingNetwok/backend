@@ -23,6 +23,10 @@ public class Company extends User {
 
 	private String NIU;
 	
+	private String showCasePath;
+	
+	private String logoPath;
+	
 	@OneToMany(mappedBy = "company", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Set<Collector> collectors = new HashSet<>();
 	
@@ -32,6 +36,22 @@ public class Company extends User {
 	public Company() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+	
+	public Company(String username, String email, String password, String adress, Long phone, boolean verified,
+			String niu, String logo , String showCase, String avatar) {
+		super(username, email, password, adress, phone, verified, avatar);
+		NIU = niu;
+		this.logoPath = logo;
+		this.showCasePath = showCase;
+	}
+	
+	public Company(String username, String email, String password, String adress, Long phone, boolean verified,
+			String niu, String logo , String showCase) {
+		super(username, email, password, adress, phone, verified);
+		NIU = niu;
+		this.logoPath = logo;
+		this.showCasePath = showCase;
 	}
 	
 	public Company(String username, String email, String password, String adress, Long phone, boolean verified,
@@ -47,6 +67,22 @@ public class Company extends User {
 	
 	public String getNIU() {
 		return NIU;
+	}
+
+	public String getShowCasePath() {
+		return showCasePath;
+	}
+
+	public void setShowCasePath(String showCasePath) {
+		this.showCasePath = showCasePath;
+	}
+
+	public String getLogoPath() {
+		return logoPath;
+	}
+
+	public void setLogoPath(String logoPath) {
+		this.logoPath = logoPath;
 	}
 
 	public void setNIU(String nIU) {

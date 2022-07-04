@@ -18,6 +18,8 @@ public class User {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
+	private String avatarPath;
 
 	@NotBlank
 	@Size(max = 20)
@@ -54,6 +56,17 @@ public class User {
 		this.password = password;
 	}
 
+	public User(String username, String email, String password, String adress, Long phone, boolean verified, String avatar) {
+		this.avatarPath = avatar;
+		this.username = username;
+		this.email = email;
+		this.password = password;
+		this.adress = adress;
+		this.phone = phone;
+		this.verified = verified;
+		setCreateOn(LocalDate.now());
+	}
+	
 	public User(String username, String email, String password, String adress, Long phone, boolean verified) {
 		this.username = username;
 		this.email = email;
@@ -66,6 +79,14 @@ public class User {
 
 	public Long getId() {
 		return id;
+	}
+	
+	public String getAvataPath() {
+		return avatarPath;
+	}
+
+	public void setAvataPath(String avatarPath) {
+		this.avatarPath = avatarPath;
 	}
 
 	public void setId(Long id) {

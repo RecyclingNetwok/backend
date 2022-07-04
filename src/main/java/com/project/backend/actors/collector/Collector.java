@@ -17,20 +17,25 @@ public class Collector extends User {
 	@JoinColumn(name = "company_id")
 	@JsonProperty(access = Access.WRITE_ONLY)
 	private Company company;
-	
+
 	public Collector() {
 		super();
 	}
-	
-	public Collector(String username, String email, String password, String adress, Long phone,
-			boolean verified) {
+
+	public Collector(String username, String email, String password, String adress, Long phone, boolean verified,
+			String avatar) {
+		super(username, email, password, adress, phone, verified, avatar);
+		// TODO Auto-generated constructor stub
+	}
+
+	public Collector(String username, String email, String password, String adress, Long phone, boolean verified) {
 		super(username, email, password, adress, phone, verified);
 	}
-	
+
 	public Collector(String username, String email, String password) {
 		super(username, email, password);
 	}
-	
+
 //	public Company getCom() {
 //		return company;
 //	}

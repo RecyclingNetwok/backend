@@ -23,7 +23,13 @@ public class Household extends User {
 		super(username, email, password);
 		this.familyName = familyName;
 	}
-
+	
+	public Household(String username, String email, String password, String adress, Long phone, boolean verified,
+			String familyName, String avatar) {
+		super(username, email, password, adress, phone, verified, avatar);
+		this.familyName = familyName;
+	}
+	
 	public Household(String username, String email, String password, String adress, Long phone, boolean verified,
 			String familyName) {
 		super(username, email, password, adress, phone, verified);

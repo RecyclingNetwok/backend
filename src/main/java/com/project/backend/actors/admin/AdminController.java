@@ -40,8 +40,8 @@ public class AdminController {
 		adminService.addNewAdmin(admin);
 	}
 	
-	@DeleteMapping
-	public void deleteAdmin(Long id) {
+	@DeleteMapping("-{AdminID}")
+	public void deletePost(@PathVariable("AdminID") Long id) {
 		adminService.deleteAdmin(id);
 	}
 	

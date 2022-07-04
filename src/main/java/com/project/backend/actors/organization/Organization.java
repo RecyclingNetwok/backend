@@ -12,22 +12,31 @@ public class Organization extends User {
 	@NotBlank
 	@Size(min = 3, max = 20)
 	private String NIU;
+	
+	private String showCasePath;
+	
+	private String logoPath;
 
 	public Organization() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-//
-//	public Organization(String username, String email, String password, Set<Role> roles, String adress, Long phone,
-//			boolean verified, LocalDate createOn) {
-//		super(username, email, password, roles, adress, phone, verified, createOn);
-//		// TODO Auto-generated constructor stub
-//	}
-//
-//	public Organization(String username, String email, String password) {
-//		super(username, email, password);
-//		// TODO Auto-generated constructor stub
-//	}
+	
+	public Organization(String username, String email, String password, String adress, Long phone, boolean verified,
+			String NIu, String logo , String showCase, String avatar) {
+		super(username, email, password, adress, phone, verified, avatar);
+		this.NIU = NIu;
+		this.logoPath = logo;
+		this.showCasePath = showCase;
+	}
+	
+	public Organization(String username, String email, String password, String adress, Long phone, boolean verified,
+			String NIu, String logo , String showCase) {
+		super(username, email, password, adress, phone, verified);
+		this.NIU = NIu;
+		this.logoPath = logo;
+		this.showCasePath = showCase;
+	}
 
 	public Organization(String username, String email, String password, String adress, Long phone, boolean verified,
 			String NIu) {
@@ -47,4 +56,22 @@ public class Organization extends User {
 	public void setNIU(String nIU) {
 		NIU = nIU;
 	}
+
+	public String getShowCasePath() {
+		return showCasePath;
+	}
+
+	public void setShowCasePath(String showCasePath) {
+		this.showCasePath = showCasePath;
+	}
+
+	public String getLogoPath() {
+		return logoPath;
+	}
+
+	public void setLogoPath(String logoPath) {
+		this.logoPath = logoPath;
+	}
+	
+	
 }

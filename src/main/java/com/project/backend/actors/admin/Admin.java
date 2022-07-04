@@ -23,5 +23,10 @@ public class Admin extends User{
 		// TODO Auto-generated constructor stub
 	}
 
-	
+	public Admin(String username, String email, String password, String adress, Long phone, boolean verified,
+			String avatar) {
+		super(username, email, password, adress, phone, verified, avatar);
+		// TODO Auto-generated constructor stub
+	}
+
 }

@@ -38,8 +38,8 @@ public class CompanyController {
 		companyService.addNewCompany(company);
 	}
 	
-	@DeleteMapping
-	public void deleteCompany(Long id) {
+	@DeleteMapping("-{CompanyID}")
+	public void deleteCompany(@PathVariable("CompanyID") Long id) {
 		companyService.deleteCompany(id);
 	}
 	

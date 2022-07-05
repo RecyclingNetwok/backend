@@ -3,6 +3,7 @@ package com.project.backend.services.post;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -36,11 +37,13 @@ public class PostController {
 	}
 	
 	@PostMapping("/add")
+	@PreAuthorize("hasAnyAuthority('Administrateur', 'Entreprise')")
 	public void addNewPost(@RequestBody Post post) {
 		postService.addPost(post);
 	}
 	
 	@DeleteMapping("-{PostID}")
+	@PreAuthorize("hasAnyAuthority('Administrateur', 'Entreprise')")
 	public void deletePost(@PathVariable("PostID") Long id) {
 		postService.deletePost(id);
 	}

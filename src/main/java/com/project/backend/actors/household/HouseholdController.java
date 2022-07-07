@@ -40,13 +40,11 @@ public class HouseholdController {
 	}
 	
 	@PostMapping("/add")
-	@PreAuthorize("hasAuthority('Administrateur')")
 	public void addNewHousehold(@RequestBody Household household) {
 		householdService.addNewHousehold(household);
 	}
 	
 	@DeleteMapping("-{HouseholdID}")
-	@PreAuthorize("hasAuthority('Administrateur')")
 	public void deleteHousehold(@PathVariable("HouseholdID") Long id) {
 		householdService.deleteHousehold(id);
 	}

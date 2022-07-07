@@ -39,13 +39,11 @@ public class OrganizationController {
 	}
 	
 	@PostMapping("/add")
-	@PreAuthorize("hasAuthority('Administrateur')")
 	public void addNewOrganization(@RequestBody Organization organization) {
 		organizationService.addNewOrganization(organization);
 	}
 	
 	@DeleteMapping("-{OrganizationID}")
-	@PreAuthorize("hasAuthority('Administrateur')")
 	public void deleteOrganization(@PathVariable("OrganizationID") Long id) {
 		organizationService.deleteOrganization(id);
 	}

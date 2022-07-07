@@ -38,13 +38,11 @@ public class CompanyController {
 	}
 	
 	@PostMapping("/add")
-	@PreAuthorize("hasAutority('Administrateur')")
 	public void addNewCompany(@RequestBody Company company) {
 		companyService.addNewCompany(company);
 	}
 	
 	@DeleteMapping("-{CompanyID}")
-	@PreAuthorize("hasAutority('Administrateur')")
 	public void deleteCompany(@PathVariable("CompanyID") Long id) {
 		companyService.deleteCompany(id);
 	}

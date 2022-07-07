@@ -38,13 +38,11 @@ public class CollectorController {
 	}
 	
 	@PostMapping("/add")
-	@PreAuthorize("hasAnyAuthority('Administrateur', 'Entreprise')")
 	public void addNewCollector(@RequestBody Collector collector) {
 		collectorService.addNewCollector(collector);
 	}
 	
 	@DeleteMapping("-{CollectorID}")
-	@PreAuthorize("hasAnyAuthority('Administrateur', 'Entreprise')")
 	public void deleteCollector(@PathVariable("CollectorID") Long id) {
 		collectorService.deleteCollector(id);
 	}

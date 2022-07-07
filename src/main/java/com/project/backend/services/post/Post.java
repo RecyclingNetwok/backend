@@ -1,23 +1,26 @@
 package com.project.backend.services.post;
 
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.Transient;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.CreationTimestamp;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 import com.project.backend.actors.company.Company;
+import com.project.backend.services.category.Category;
 
 @Entity
 public class Post {
@@ -32,6 +35,10 @@ public class Post {
 	@JoinColumn(name = "company_id")
 	@JsonProperty(access = Access.WRITE_ONLY)
 	private Company company;
+	
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "post_categories", joinColumns = @JoinColumn(name = "post_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
+	private Set<Category> categories = new HashSet<>() ;
 	
 	private String title;
 	

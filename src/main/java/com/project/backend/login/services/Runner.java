@@ -9,38 +9,49 @@ import org.springframework.stereotype.Component;
 import com.project.backend.login.models.ERole;
 import com.project.backend.login.models.Role;
 import com.project.backend.login.repository.RoleRepository;
+import com.project.backend.services.category.Category;
+import com.project.backend.services.category.CategoryService;
 
 @Component
 public class Runner implements CommandLineRunner {
 
 	private static final Logger logger = LoggerFactory.getLogger(Runner.class);
-	
+
 	private final RoleRepository roleRepository;
+
+	@Autowired
+	CategoryService categoryService;
 
 	@Autowired
 	public Runner(RoleRepository roleRepository) {
 		this.roleRepository = roleRepository;
 	}
-	
+
 	@Override
 	public void run(String... args) throws Exception {
-		// TODO Auto-generated method stub
-		Role r1 = new Role(ERole.Administrateur);
-		Role r2 = new Role(ERole.Menage);
-		Role r3 = new Role(ERole.Entreprise);
-		Role r4 = new Role(ERole.Collecteur);
-		Role r5 = new Role(ERole.Organisation);
-		
-		if ( roleRepository.findByName(r1.getName()).isPresent() ) {
-			
-		}else {
-			roleRepository.save(r1);
-			roleRepository.save(r2);
-			roleRepository.save(r3);
-			roleRepository.save(r4);
-			roleRepository.save(r5);
+		String[] categories = { "Non Classé", "Plastique", "Plastique de couleur noire", "Papier bulle",
+				"Dosettes de café", "Plastique compostable", "Tuyeaux d'arrosage", "Emballage de viande",
+				"Emballage d'Arachides", "Sacs en plastique", "Bouchons et couvercles en plastique",
+				"Rideaux de douche en plastique", "Ustensiles en plastique", "Emballage plastique et film",
+				"Filtres à eau" };
+
+		//Insert posts Categories
+		for (String cat : categories) {
+			Category c = new Category(cat);
+			categoryService.addNewCategory(c);
 		}
-		
+
+		//Insert Roles
+		Role r1 = new Role(ERole.Administrateur);
+		if (roleRepository.findByName(r1.getName()).isPresent()) {
+
+		} else {
+			for (ERole role : ERole.values()) {
+				Role r = new Role(role);
+				roleRepository.save(r);
+			}
+		}
+
 	}
 
 }

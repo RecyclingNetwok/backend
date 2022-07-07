@@ -49,5 +49,6 @@ public class CollectorController {
 		collectorService.deleteCollector(id);
 	}
 	
+	
 }
 

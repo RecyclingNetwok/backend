@@ -10,6 +10,7 @@ import com.project.backend.login.models.ERole;
 import com.project.backend.login.models.Role;
 import com.project.backend.login.repository.RoleRepository;
 import com.project.backend.services.category.Category;
+import com.project.backend.services.category.CategoryRepository;
 import com.project.backend.services.category.CategoryService;
 
 @Component
@@ -20,7 +21,7 @@ public class Runner implements CommandLineRunner {
 	private final RoleRepository roleRepository;
 
 	@Autowired
-	CategoryService categoryService;
+	CategoryRepository categoryRepository;
 
 	@Autowired
 	public Runner(RoleRepository roleRepository) {
@@ -35,13 +36,19 @@ public class Runner implements CommandLineRunner {
 				"Rideaux de douche en plastique", "Ustensiles en plastique", "Emballage plastique et film",
 				"Filtres à eau" };
 
-		//Insert posts Categories
-		for (String cat : categories) {
-			Category c = new Category(cat);
-			categoryService.addNewCategory(c);
+		// Insert posts Categories
+		Category c0 = new Category(categories[0]);
+		if (categoryRepository.findByName(c0.getName()).isPresent()) {
+
+		} else {
+
+			for (String cat : categories) {
+				Category c = new Category(cat);
+				categoryRepository.save(c);
+			}
 		}
 
-		//Insert Roles
+		// Insert Roles
 		Role r1 = new Role(ERole.Administrateur);
 		if (roleRepository.findByName(r1.getName()).isPresent()) {
 

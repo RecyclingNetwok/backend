@@ -37,13 +37,11 @@ public class PostController {
 	}
 	
 	@PostMapping("/add")
-	@PreAuthorize("hasAnyAuthority('Administrateur', 'Entreprise')")
 	public void addNewPost(@RequestBody Post post) {
 		postService.addPost(post);
 	}
 	
 	@DeleteMapping("-{PostID}")
-	@PreAuthorize("hasAnyAuthority('Administrateur', 'Entreprise')")
 	public void deletePost(@PathVariable("PostID") Long id) {
 		postService.deletePost(id);
 	}

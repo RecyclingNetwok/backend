@@ -9,9 +9,12 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import com.project.backend.actors.organization.Organization;
 
 
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -31,6 +34,11 @@ public class PostController {
 		return postService.getAllPosts();
 	}
 	
+	@GetMapping("/publisher-{ID}")
+	public List<Post> getByPublisher(@PathVariable("ID") Long id){
+		return postService.getByPublisher(id);
+	}
+	
 	@GetMapping("-{PostID}")
 	public Post getPostById(@PathVariable("PostID") Long id) {
 		return postService.getPostById(id);
@@ -46,5 +54,9 @@ public class PostController {
 		postService.deletePost(id);
 	}
 	
+	@PutMapping
+	public void update(@RequestBody Post p) {
+		postService.update(p);
+	}
 }
 

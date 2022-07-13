@@ -43,5 +43,7 @@ public class OrganizationService {
 		System.out.println("Deleting organization...");
 	}
 	
-	//TODO updateOrganization(Long id)
+	public void update (Organization org) {
+		organizationRepository.save(org);
+	}
 }

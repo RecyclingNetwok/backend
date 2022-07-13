@@ -9,6 +9,8 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.DynamicUpdate;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 import com.project.backend.actors.collector.Collector;
@@ -19,6 +21,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
+@DynamicUpdate
 public class Company extends User {
 
 	private String NIU;

@@ -30,6 +30,10 @@ public class PostService {
 		return postRepository.findById(id).get();
 	}
 	
+	public List<Post> getByPublisher(Long id){
+		return postRepository.findByCom_id(id);
+	}
+	
 	public void addPost(Post post) {
 		Optional<Post> postOptional = postRepository.findByTitle(post.getTitle());
 		if(postOptional.isPresent()) {
@@ -63,5 +67,7 @@ public class PostService {
 		postRepository.deleteById(id);
 	}
 	
-	//TODO updatePost(Long id)
+	public void update(Post p) {
+		postRepository.save(p);
+	}
 }

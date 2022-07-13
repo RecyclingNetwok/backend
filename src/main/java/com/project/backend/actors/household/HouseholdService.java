@@ -6,6 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.project.backend.actors.company.Company;
+
 @Service
 public class HouseholdService {
 
@@ -43,6 +45,8 @@ public class HouseholdService {
 		System.out.println("Deleting household...");
 	}
 	
-	//TODO updateHousehold(Long id)
+	public void update(Household h){
+		householdRepository.save(h);
+	}
 }
 

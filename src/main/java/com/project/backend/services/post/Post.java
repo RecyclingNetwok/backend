@@ -16,6 +16,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.DynamicUpdate;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
@@ -23,6 +24,7 @@ import com.project.backend.actors.company.Company;
 import com.project.backend.services.category.Category;
 
 @Entity
+@DynamicUpdate
 public class Post {
 	
 	@Id

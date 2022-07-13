@@ -6,6 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.project.backend.actors.collector.Collector;
+
 
 @Service
 public class CompanyService {
@@ -44,5 +46,7 @@ private final CompanyRepository companyRepository;
 		System.out.println("Deleting company...");
 	}
 	
-	//TODO updateCompany(Long id)
+	public void update(Company com){
+		companyRepository.save(com);
+	}
 }

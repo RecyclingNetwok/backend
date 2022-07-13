@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 public class AdminService {
 
 	private final AdminRepository adminRepository;
-
+	
 	@Autowired
 	public AdminService(AdminRepository adminRepository) {
 		this.adminRepository = adminRepository;
@@ -43,5 +43,7 @@ public class AdminService {
 		System.out.println("Deleting admin...");
 	}
 
-	// TODO updateAdmin(Long id)
+	public void updateAdmin(Admin ad) {
+		adminRepository.save(ad);
+	}
 }

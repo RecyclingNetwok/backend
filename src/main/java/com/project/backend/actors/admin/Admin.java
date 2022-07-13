@@ -2,9 +2,12 @@ package com.project.backend.actors.admin;
 
 import javax.persistence.Entity;
 
+import org.hibernate.annotations.DynamicUpdate;
+
 import com.project.backend.login.models.User;
 
 @Entity
+@DynamicUpdate
 public class Admin extends User{
 
 	public Admin() {

@@ -43,6 +43,8 @@ private final CollectorRepository collectorRepository;
 		System.out.println("Deleting collector...");
 	}
 	
-	//TODO updateCollector(Long id)
+	public void updateCollector(Collector c){
+		collectorRepository.save(c);
+	}
 }
 

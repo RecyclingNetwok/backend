@@ -4,9 +4,12 @@ import javax.persistence.Entity;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.DynamicUpdate;
+
 import com.project.backend.login.models.User;
 
 @Entity
+@DynamicUpdate
 public class Organization extends User {
 
 	@NotBlank

@@ -2,9 +2,12 @@ package com.project.backend.actors.household;
 
 import javax.persistence.Entity;
 
+import org.hibernate.annotations.DynamicUpdate;
+
 import com.project.backend.login.models.User;
 
 @Entity
+@DynamicUpdate
 public class Household extends User {
 
 	private String familyName;

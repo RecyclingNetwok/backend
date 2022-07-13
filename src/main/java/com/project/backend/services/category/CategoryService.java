@@ -43,5 +43,7 @@ public class CategoryService {
 		System.out.println("Deleting category...");
 	}
 
-	// TODO updateCategory(Long id)
+	public void update(Category cat) {
+		categoryRepository.save(cat);
+	}
 }

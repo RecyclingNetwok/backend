@@ -9,6 +9,8 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "users", uniqueConstraints = { @UniqueConstraint(columnNames = "username"),
@@ -19,6 +21,7 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@JsonProperty(defaultValue = "avatarPath")
 	private String avatarPath;
 
 	@NotBlank
@@ -81,11 +84,11 @@ public class User {
 		return id;
 	}
 	
-	public String getAvataPath() {
+	public String getAvatarPath() {
 		return avatarPath;
 	}
 
-	public void setAvataPath(String avatarPath) {
+	public void setAvatarPath(String avatarPath) {
 		this.avatarPath = avatarPath;
 	}
 

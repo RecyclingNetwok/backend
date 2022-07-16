@@ -85,26 +85,26 @@ public class UserDetailsImpl implements UserDetails {
 		if(user instanceof Admin) {
 			Admin ad = (Admin) user;
 			
-			String [] details = {"Administrateur", ad.getAvataPath(), "", ""};
+			String [] details = {"Administrateur", ad.getAvatarPath(), "", ""};
 			return details;
 		}else if(user instanceof Household) {
 			Household h = (Household) user;
-			String [] details = {"Menage", h.getAvataPath(), "", ""};
+			String [] details = {"Menage", h.getAvatarPath(), "", ""};
 			return details;
 			
 		}else if(user instanceof Organization) {
 			Organization org = (Organization) user;
-			String [] details = {"Organisation", org.getAvataPath(), org.getLogoPath(), org.getShowCasePath()};
+			String [] details = {"Organisation", org.getAvatarPath(), org.getLogoPath(), org.getShowCasePath()};
 			return details;
 			
 		}else if(user instanceof Company) {
 			Company c = (Company) user;
-			String [] details = {"Entreprise", c.getAvataPath(), c.getLogoPath(), c.getShowCasePath()};
+			String [] details = {"Entreprise", c.getAvatarPath(), c.getLogoPath(), c.getShowCasePath()};
 			return details;
 			
 		}else if(user instanceof Collector) {
 			Collector col = (Collector) user;
-			String [] details = {"Collecteur", col.getAvataPath(), "", ""};
+			String [] details = {"Collecteur", col.getAvatarPath(), "", ""};
 			return details;
 			
 		}

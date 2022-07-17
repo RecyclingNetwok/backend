@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface PostRepository extends JpaRepository<Post, Long>{
+	@Query(value = "SELECT * FROM post  WHERE title = ?1", nativeQuery = true)
 	Optional<Post> findByTitle(String postTitle);
 	
 	@Query(value = "SELECT * FROM post  WHERE com_id = ?1", nativeQuery = true)

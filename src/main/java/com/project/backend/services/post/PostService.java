@@ -37,24 +37,25 @@ public class PostService {
 	public void addPost(Post post) {
 		Optional<Post> postOptional = postRepository.findByTitle(post.getTitle());
 		if(postOptional.isPresent()) {
-			throw new IllegalStateException("Post Already Exist !");
+			throw new IllegalStateException("Post With this title already Exist !");
 		}else {
 			System.out.println("compaany id : " +post.getCom_id());
 			//Get company
 			Optional<Company> optionalCom = companyRepository.findById(post.getCom_id());
 			if(!optionalCom.isPresent()) {
 				throw new IllegalStateException("Which Company is it for ? !");
+			}else {
+				Company com = optionalCom.get();
+				
+//				com.setId(post.getCom_id());
+//				System.out.println(com);
+//				
+				post.setCompany(com);
+				
+				System.out.println(post);
+				postRepository.save(post);
 			}
 			
-			Company com = optionalCom.get();
-			
-			com.setId(post.getCom_id());
-			System.out.println(com);
-			
-			post.setCompany(com);
-			
-			System.out.println(post);
-			postRepository.save(post);
 		}
 	}
 	

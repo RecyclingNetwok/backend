@@ -31,7 +31,7 @@ public class PostService {
 	}
 	
 	public List<Post> getByPublisher(Long id){
-		return postRepository.findByCompanyId(id);
+		return postRepository.findBycom_id(id);
 	}
 	
 	public List<Post> getByCategory_id(Long id){

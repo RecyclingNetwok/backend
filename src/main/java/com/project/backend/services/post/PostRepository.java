@@ -11,7 +11,8 @@ import org.springframework.stereotype.Repository;
 public interface PostRepository extends JpaRepository<Post, Long>{
 	Optional<Post> findByTitle(String title);
 	
-	List<Post> findByCompanyId(Long com_id);
+	@Query(value = "SELECT * FROM post WHERE com_id = ?1 ", nativeQuery = true)
+	List<Post> findBycom_id(Long com_id);
 	
 	List<Post> findByCategories_id(Long id);
 }

@@ -31,7 +31,11 @@ public class PostService {
 	}
 	
 	public List<Post> getByPublisher(Long id){
-		return postRepository.findByCom_id(id);
+		return postRepository.findByCompanyId(id);
+	}
+	
+	public List<Post> getByCategory_id(Long id){
+		return postRepository.findByCategories_id(id);
 	}
 	
 	public void addPost(Post post) {

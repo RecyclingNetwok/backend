@@ -38,7 +38,7 @@ public class Post {
 	@JsonProperty(access = Access.WRITE_ONLY)
 	private Company company;
 	
-	@ManyToMany(fetch = FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name = "post_categories", joinColumns = @JoinColumn(name = "post_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
 	private Set<Category> categories = new HashSet<>() ;
 	
@@ -121,6 +121,14 @@ public class Post {
 		this.company = company;
 	}
 	
+	public Set<Category> getCategories() {
+		return categories;
+	}
+
+	public void setCategories(Set<Category> categories) {
+		this.categories = categories;
+	}
+
 	public Long getCom_id() {
 		return com_id;
 	}
@@ -131,8 +139,9 @@ public class Post {
 
 	@Override
 	public String toString() {
-		return "Post [id=" + id + ", company=" + company + ", title=" + title + ", description=" + description
-				+ ", imagePath=" + imagePath + ", imageTitle=" + imageTitle + ", createOn=" + createOn + "]";
+		return "Post [id=" + id + ", com_id=" + com_id + ", company=" + company + ", categories=" + categories
+				+ ", title=" + title + ", description=" + description + ", imagePath=" + imagePath + ", imageTitle="
+				+ imageTitle + ", createOn=" + createOn + "]";
 	}
-	
+
 }

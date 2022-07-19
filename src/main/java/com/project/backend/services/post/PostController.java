@@ -39,6 +39,11 @@ public class PostController {
 		return postService.getByPublisher(id);
 	}
 	
+	@GetMapping("/category-{ID}")
+	public List<Post> getByCategory_id(@PathVariable("ID") Long id){
+		return postService.getByCategory_id(id);
+	}
+	
 	@GetMapping("-{PostID}")
 	public Post getPostById(@PathVariable("PostID") Long id) {
 		return postService.getPostById(id);

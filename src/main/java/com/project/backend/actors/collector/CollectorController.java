@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.project.backend.login.request.SignupRequest;
+
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping("/api/v1/collector")
@@ -53,5 +55,19 @@ public class CollectorController {
 		collectorService.updateCollector(c);
 	}
 	
+	@PutMapping("/update-all")
+	public void UpdateAll(@RequestBody SignupRequest request) {
+		collectorService.update(request);
+	}
+	
+	@PutMapping("/update-ava")
+	public void UpdateAvatar(@RequestBody SignupRequest request) {
+		collectorService.updateAvatar(request);
+	}
+	
+	@PutMapping("/update-pwd")
+	public void UpdatePwd(@RequestBody SignupRequest request) {
+		collectorService.updatePwd(request);
+	}
 }
 

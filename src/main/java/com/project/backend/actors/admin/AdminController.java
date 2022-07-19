@@ -3,6 +3,7 @@ package com.project.backend.actors.admin;
 import java.util.List;
 
 import javax.annotation.security.PermitAll;
+import javax.websocket.server.PathParam;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -59,5 +60,20 @@ public class AdminController {
 	@PutMapping
 	public void UpdateAdmin(@RequestBody Admin admin) {
 		adminService.updateAdmin(admin);
+	}
+
+	@PutMapping("/update-all")
+	public void UpdateAll(@RequestBody SignupRequest request) {
+		adminService.update(request);
+	}
+	
+	@PutMapping("/update-ava")
+	public void UpdateAvatar(@RequestBody SignupRequest request) {
+		adminService.updateAvatar(request);
+	}
+	
+	@PutMapping("/update-pwd")
+	public void UpdatePwd(@RequestBody SignupRequest request) {
+		adminService.updatePwd(request);
 	}
 }

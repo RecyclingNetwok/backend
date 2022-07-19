@@ -4,15 +4,21 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.project.backend.actors.company.Company;
 import com.project.backend.actors.collector.Collector;
+import com.project.backend.login.request.SignupRequest;
 
 
 @Service
 public class CompanyService {
-
-private final CompanyRepository companyRepository;
+	
+	@Autowired
+	PasswordEncoder encoder;
+	
+	private final CompanyRepository companyRepository;
 	
 	@Autowired
 	public CompanyService(CompanyRepository companyRepository) {
@@ -46,7 +52,28 @@ private final CompanyRepository companyRepository;
 		System.out.println("Deleting company...");
 	}
 	
-	public void update(Company com){
-		companyRepository.save(com);
+	public void updateAvatar(SignupRequest request) {
+		Company ad = companyRepository.findById(request.getId()).get();
+		ad.setAvatarPath(request.getAvatarPath());
+		companyRepository.save(ad);
 	}
+	
+	public void updatePwd( SignupRequest request) {
+		Company ad = companyRepository.findById(request.getId()).get();
+		ad.setAvatarPath(encoder.encode(request.getPassword()));
+		companyRepository.save(ad);
+	}
+	
+	public void update(SignupRequest request) {
+		Company ad = companyRepository.findById(request.getId()).get();
+		
+		ad.setUsername(request.getUsername());
+		ad.setEmail(request.getEmail());
+		ad.setAdress(request.getAdress());
+		ad.setPhone(request.getPhone());
+		ad.setNIU(request.getNIU());
+		
+		companyRepository.save(ad);
+	}
+
 }

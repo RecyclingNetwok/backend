@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.backend.actors.household.Household;
+import com.project.backend.login.request.SignupRequest;
 
 //@PreAuthorize("hasRole('ADMIN')")
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -54,6 +55,21 @@ public class OrganizationController {
 	@PutMapping
 	public void update(@RequestBody Organization o) {
 		organizationService.update(o);
+	}
+	
+	@PutMapping("/update-all")
+	public void UpdateAll(@RequestBody SignupRequest request) {
+		organizationService.update(request);
+	}
+	
+	@PutMapping("/update-ava")
+	public void UpdateAvatar(@RequestBody SignupRequest request) {
+		organizationService.updateAvatar(request);
+	}
+	
+	@PutMapping("/update-pwd")
+	public void UpdatePwd(@RequestBody SignupRequest request) {
+		organizationService.updatePwd(request);
 	}
 }
 

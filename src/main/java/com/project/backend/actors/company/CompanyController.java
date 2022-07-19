@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.backend.actors.collector.Collector;
+import com.project.backend.login.request.SignupRequest;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -50,9 +51,18 @@ public class CompanyController {
 		companyService.deleteCompany(id);
 	}
 	
-	@PutMapping
-	public void update(@RequestBody Company c) {
-		companyService.update(c);
+	@PutMapping("/update-all")
+	public void UpdateAll(@RequestBody SignupRequest request) {
+		companyService.update(request);
 	}
 	
+	@PutMapping("/update-ava")
+	public void UpdateAvatar(@RequestBody SignupRequest request) {
+		companyService.updateAvatar(request);
+	}
+	
+	@PutMapping("/update-pwd")
+	public void UpdatePwd(@RequestBody SignupRequest request) {
+		companyService.updatePwd(request);
+	}
 }

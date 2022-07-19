@@ -4,13 +4,19 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.project.backend.actors.household.Household;
 import com.project.backend.actors.company.Company;
+import com.project.backend.login.request.SignupRequest;
 
 @Service
 public class HouseholdService {
 
+	@Autowired
+	PasswordEncoder encoder;
+	
 	private final HouseholdRepository householdRepository;
 	
 	@Autowired
@@ -47,6 +53,30 @@ public class HouseholdService {
 	
 	public void update(Household h){
 		householdRepository.save(h);
+	}
+	
+	public void updateAvatar(SignupRequest request) {
+		Household ad = householdRepository.findById(request.getId()).get();
+		ad.setAvatarPath(request.getAvatarPath());
+		householdRepository.save(ad);
+	}
+	
+	public void updatePwd( SignupRequest request) {
+		Household ad = householdRepository.findById(request.getId()).get();
+		ad.setAvatarPath(encoder.encode(request.getPassword()));
+		householdRepository.save(ad);
+	}
+	
+	public void update(SignupRequest request) {
+		Household ad = householdRepository.findById(request.getId()).get();
+		
+		ad.setUsername(request.getUsername());
+		ad.setEmail(request.getEmail());
+		ad.setAdress(request.getAdress());
+		ad.setPhone(request.getPhone());
+		ad.setFamilyName(request.getFamilyName());
+		
+		householdRepository.save(ad);
 	}
 }
 

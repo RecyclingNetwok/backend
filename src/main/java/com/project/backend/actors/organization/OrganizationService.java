@@ -4,11 +4,18 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import com.project.backend.actors.organization.Organization;
+import com.project.backend.login.request.SignupRequest;
 
 @Service
 public class OrganizationService {
 
+	@Autowired
+	PasswordEncoder encoder;
+	
 	private final OrganizationRepository organizationRepository;
 	
 	@Autowired
@@ -45,5 +52,30 @@ public class OrganizationService {
 	
 	public void update (Organization org) {
 		organizationRepository.save(org);
+	}
+	
+	
+	public void updateAvatar(SignupRequest request) {
+		Organization ad = organizationRepository.findById(request.getId()).get();
+		ad.setAvatarPath(request.getAvatarPath());
+		organizationRepository.save(ad);
+	}
+	
+	public void updatePwd( SignupRequest request) {
+		Organization ad = organizationRepository.findById(request.getId()).get();
+		ad.setAvatarPath(encoder.encode(request.getPassword()));
+		organizationRepository.save(ad);
+	}
+	
+	public void update(SignupRequest request) {
+		Organization ad = organizationRepository.findById(request.getId()).get();
+		
+		ad.setUsername(request.getUsername());
+		ad.setEmail(request.getEmail());
+		ad.setAdress(request.getAdress());
+		ad.setPhone(request.getPhone());
+		ad.setNIU(request.getNIU());
+		
+		organizationRepository.save(ad);
 	}
 }

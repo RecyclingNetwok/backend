@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.project.backend.actors.company.Company;
+import com.project.backend.login.request.SignupRequest;
 
 
 //@PreAuthorize("hasRole('ADMIN')")
@@ -55,5 +56,20 @@ public class HouseholdController {
 	@PutMapping
 	public void update(@RequestBody Household h) {
 		householdService.update(h);
+	}
+	
+	@PutMapping("/update-all")
+	public void UpdateAll(@RequestBody SignupRequest request) {
+		householdService.update(request);
+	}
+	
+	@PutMapping("/update-ava")
+	public void UpdateAvatar(@RequestBody SignupRequest request) {
+		householdService.updateAvatar(request);
+	}
+	
+	@PutMapping("/update-pwd")
+	public void UpdatePwd(@RequestBody SignupRequest request) {
+		householdService.updatePwd(request);
 	}
 }

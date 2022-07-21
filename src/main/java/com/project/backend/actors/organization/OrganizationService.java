@@ -4,9 +4,15 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.rest.webmvc.ResourceNotFoundException;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.project.backend.actors.company.Company;
+import com.project.backend.actors.company.CompanyRepository;
+import com.project.backend.actors.organization.Organization;
 import com.project.backend.actors.organization.Organization;
 import com.project.backend.login.request.SignupRequest;
 
@@ -15,6 +21,9 @@ public class OrganizationService {
 
 	@Autowired
 	PasswordEncoder encoder;
+	
+	@Autowired
+	CompanyRepository companyRepository;
 	
 	private final OrganizationRepository organizationRepository;
 	
@@ -26,6 +35,42 @@ public class OrganizationService {
 	public List<Organization> getAllOrganizations(){
 		return (List<Organization>) organizationRepository.findAll();
 	}
+	
+	/**
+	 * Get Companies By org Id
+	 * 
+	 * @param orgId
+	 * @return
+	 */
+	public List<Company> getCompaniesByOrganizationId(Long orgId) {
+		if (!organizationRepository.existsById(orgId)) {
+			throw new ResourceNotFoundException("Not Found Organization with id : " + orgId);
+		}
+		List<Company> companies = companyRepository.findOrgAbonneesById(orgId);
+		return companies;
+	}
+	
+	public ResponseEntity<Organization> abonner(Long comId, Long orgID) {
+			long orgId = orgID;
+			Company company = companyRepository.findById(comId)
+					.orElseThrow( () -> new ResourceNotFoundException("Not Found Company with id : "+comId) );
+
+				Organization _organization = organizationRepository.findById(orgId)
+						.orElseThrow( () -> new ResourceNotFoundException("Not Found Organization With id : "+orgId) );
+				company.addOrg(_organization);
+				companyRepository.save(company);
+		return new ResponseEntity<Organization>(_organization, HttpStatus.OK);
+	}
+
+	public ResponseEntity<String> desabonner(Long comId, Long orgId){
+		Company company = companyRepository.findById(comId)
+				.orElseThrow( () -> new ResourceNotFoundException("Not Found Company With id : "+comId) );
+		
+		company.removeOrg(orgId);
+		companyRepository.save(company);
+		return new ResponseEntity<String>("Organisation désabonné avec Succès !",HttpStatus.OK);
+	}
+	
 	
 	public Organization getOrganizationByID(Long id) {
 		return organizationRepository.findById(id).get();

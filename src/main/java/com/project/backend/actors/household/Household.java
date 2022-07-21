@@ -1,9 +1,18 @@
 package com.project.backend.actors.household;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToMany;
 
 import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.ManyToAny;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty.Access;
+import com.project.backend.actors.company.Company;
 import com.project.backend.login.models.User;
 
 @Entity
@@ -11,6 +20,10 @@ import com.project.backend.login.models.User;
 public class Household extends User {
 
 	private String familyName;
+	
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "hhdAbonnees")
+	@JsonProperty(access = Access.WRITE_ONLY)
+	private Set<Company> companies = new HashSet<>();
 
 	public Household() {
 		super();
@@ -45,6 +58,14 @@ public class Household extends User {
 
 	public void setFamilyName(String familyName) {
 		this.familyName = familyName;
+	}
+
+	public Set<Company> getCompanies() {
+		return companies;
+	}
+
+	public void setCompanies(Set<Company> companies) {
+		this.companies = companies;
 	}
 
 }

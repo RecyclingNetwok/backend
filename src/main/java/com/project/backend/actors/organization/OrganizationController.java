@@ -5,6 +5,8 @@ import java.util.List;
 import javax.annotation.security.PermitAll;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -16,7 +18,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.project.backend.actors.household.Household;
+import com.project.backend.actors.company.Company;
+import com.project.backend.actors.organization.Organization;
 import com.project.backend.login.request.SignupRequest;
 
 //@PreAuthorize("hasRole('ADMIN')")
@@ -50,6 +53,21 @@ public class OrganizationController {
 	@DeleteMapping("-{OrganizationID}")
 	public void deleteOrganization(@PathVariable("OrganizationID") Long id) {
 		organizationService.deleteOrganization(id);
+	}
+	
+	@GetMapping("-{orgID}/following")
+	public List<Company> getCompaniesbyOrganizationId(@PathVariable(value = "orgID") Long orgID){
+		return organizationService.getCompaniesByOrganizationId(orgID);
+	}
+	
+	@PostMapping("-{orgID}/follow/{comID}")
+	public ResponseEntity<Organization> abonner(@PathVariable("comID") Long comId,@PathVariable(value = "orgID") Long orgID){
+		return organizationService.abonner(comId, orgID);
+	}
+	
+	@DeleteMapping("-{orgID}/unfollow/{comID}")
+	public ResponseEntity<String> desabonner(@PathVariable("comID") Long comId,@PathVariable("orgID") Long orgId){
+		return organizationService.desabonner(comId, orgId);
 	}
 	
 	@PutMapping

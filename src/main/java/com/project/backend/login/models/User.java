@@ -6,10 +6,10 @@ import java.util.Set;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.project.backend.services.image.ImageModel;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -21,7 +21,6 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@JsonProperty(defaultValue = "avatarPath")
 	private String avatarPath;
 
 	@NotBlank

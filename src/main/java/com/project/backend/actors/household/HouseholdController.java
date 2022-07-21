@@ -5,6 +5,8 @@ import java.util.List;
 import javax.annotation.security.PermitAll;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -41,6 +43,21 @@ public class HouseholdController {
 	@GetMapping("-{HouseholdID}")
 	public Household getHouseholdById(@PathVariable("HouseholdID") Long id) {
 		return householdService.getHouseholdByID(id);
+	}
+	
+	@GetMapping("-{hhdID}/following")
+	public List<Company> getCompaniesbyHouseholdId(@PathVariable(value = "hhdID") Long hhdID){
+		return householdService.getCompaniesByHouseholdId(hhdID);
+	}
+	
+	@PostMapping("-{hhdID}/follow/{comID}")
+	public ResponseEntity<Household> abonner(@PathVariable("comID") Long comId,@PathVariable("hhdID")  Long hhdID){
+		return householdService.abonner(comId, hhdID);
+	}
+	
+	@DeleteMapping("-{hhdID}/unfollow/{comID}")
+	public ResponseEntity<String> desabonner(@PathVariable("comID") Long comId,@PathVariable("hhdID") Long hhdId){
+		return householdService.desabonner(comId, hhdId);
 	}
 	
 	@PostMapping("/add")

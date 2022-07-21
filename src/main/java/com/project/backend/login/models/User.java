@@ -9,7 +9,6 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.project.backend.services.image.ImageModel;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)

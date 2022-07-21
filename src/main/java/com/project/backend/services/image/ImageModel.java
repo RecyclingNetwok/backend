@@ -30,11 +30,6 @@ public class ImageModel {
 	@Column(name = "picByte", length = 1000)
 	private byte[] picByte;
 	
-	@OneToOne
-    @MapsId
-    @JoinColumn(name = "user_id")
-	private User user;
-
 	public ImageModel() {
 		super();
 	}

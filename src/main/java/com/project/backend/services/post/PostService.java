@@ -75,6 +75,7 @@ public class PostService {
 	public void update(Post p) {
 		postRepository.save(p);
 	}
+<<<<<<< HEAD
 
 	public List<Post> getAllPublished() {
 		return postRepository.findAllByPublished();
@@ -100,4 +101,6 @@ public class PostService {
 		_p.setPublished(true);
 		postRepository.save(_p);
 	}
+=======
+>>>>>>> parent of 8cd9589 (Post serivce Update)
 }

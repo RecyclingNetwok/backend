@@ -15,16 +15,4 @@ public interface PostRepository extends JpaRepository<Post, Long>{
 	List<Post> findBycom_id(Long com_id);
 	
 	List<Post> findByCategories_id(Long id);
-	
-	boolean existsByPublished(Long id);
-	
-	@Query(value = "SELECT * FROM post WHERE published = true and id = :id", nativeQuery = true)
-	Post findByPublished(Long id);
-	
-	@Query(value = "SELECT * FROM post WHERE published = false and id = :id", nativeQuery = true)
-	Post findByNotPublished(Long id);
-	
-	@Query(value = "SELECT * FROM post WHERE published = true", nativeQuery = true)
-	List<Post> findAllByPublished();
-	
 }

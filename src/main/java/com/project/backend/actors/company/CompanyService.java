@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -75,24 +74,6 @@ public class CompanyService {
 		ad.setNIU(request.getNIU());
 		
 		companyRepository.save(ad);
-	}
-	
-	public void updateVerified(SignupRequest request) {
-		Company ad = companyRepository.findById(request.getId()).get();
-		
-		if(request.isVerified()) {
-			throw new ResourceNotFoundException("Company with id : "+request.getId()+" Already verified !");
-		}
-		ad.setVerified(request.isVerified());
-		companyRepository.save(ad);
-	}
-	
-	public List<Company> getVerifiedCompanies() {
-		return companyRepository.findByVerified();
-	}
-	
-	public List<Company> getNotVerifiedCompanies() {
-		return companyRepository.findByNotVerified();
 	}
 
 }

@@ -75,35 +75,30 @@ public class PostService {
 	public void update(Post p) {
 		postRepository.save(p);
 	}
-<<<<<<< HEAD
-<<<<<<< HEAD
 
-	public List<Post> getAllPublished() {
-		return postRepository.findAllByPublished();
-	}
+//	public List<Post> getAllPublished() {
+//		return postRepository.findAllByPublished();
+//	}
 
-	public Post getPublishedById(Long id) {
-		boolean exists = postRepository.existsById(id);
-		if (!exists) {
-			throw new IllegalStateException("Post with id '" + id + "' does not exists !");
-		}
-		return postRepository.findByPublished(id);
-	}
+//	public Post getPublishedById(Long id) {
+//		boolean exists = postRepository.existsById(id);
+//		if (!exists) {
+//			throw new IllegalStateException("Post with id '" + id + "' does not exists !");
+//		}
+//		return postRepository.findByPublished(id);
+//	}
 
-	public void publish(Long id) {
-		Optional<Post> p = postRepository.findById(id);
-		if (!p.isPresent()) {
-			throw new IllegalStateException("Post with id '" + id + "' does not exists !");
-		}
-		Post _p = p.get();
-		if (_p.isPublished()) {
-			throw new IllegalStateException("Post with id '" + id + "' Already Published !");
-		}
-		_p.setPublished(true);
-		postRepository.save(_p);
-	}
-=======
->>>>>>> parent of 8cd9589 (Post serivce Update)
-=======
->>>>>>> parent of 8cd9589 (Post serivce Update)
+//	public void publish(Long id) {
+//		Optional<Post> p = postRepository.findById(id);
+//		if (!p.isPresent()) {
+//			throw new IllegalStateException("Post with id '" + id + "' does not exists !");
+//		}
+//		Post _p = p.get();
+//		if (_p.isPublished()) {
+//			throw new IllegalStateException("Post with id '" + id + "' Already Published !");
+//		}
+//		_p.setPublished(true);
+//		postRepository.save(_p);
+//	}
+
 }

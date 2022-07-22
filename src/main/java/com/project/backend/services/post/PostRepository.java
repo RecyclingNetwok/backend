@@ -15,4 +15,6 @@ public interface PostRepository extends JpaRepository<Post, Long>{
 	List<Post> findBycom_id(Long com_id);
 	
 	List<Post> findByCategories_id(Long id);
+	
+	List<Post> findAllByPublished(boolean published);
 }

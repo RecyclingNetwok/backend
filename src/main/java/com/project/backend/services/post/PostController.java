@@ -34,6 +34,16 @@ public class PostController {
 		return postService.getAllPosts();
 	}
 	
+	@GetMapping("/published")
+	public List<Post> getAllPublishedPosts(){
+		return postService.getAllPublished();
+	}
+	
+	@GetMapping("/notpublished")
+	public List<Post> getAllNotPublishedPosts(){
+		return postService.getAllNotPublished();
+	}
+	
 	@GetMapping("/publisher-{ID}")
 	public List<Post> getByPublisher(@PathVariable("ID") Long id){
 		return postService.getByPublisher(id);
@@ -62,6 +72,16 @@ public class PostController {
 	@PutMapping
 	public void update(@RequestBody Post p) {
 		postService.update(p);
+	}
+	
+	@PutMapping("/publish-{id}")
+	public void publish(@PathVariable("id") Long id) {
+		postService.publish(id);
+	}
+	
+	@PutMapping("/unpublish-{id}")
+	public void unpublish(@PathVariable("id") Long id) {
+		postService.unpublish(id);
 	}
 }
 

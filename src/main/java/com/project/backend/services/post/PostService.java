@@ -76,29 +76,47 @@ public class PostService {
 		postRepository.save(p);
 	}
 
-//	public List<Post> getAllPublished() {
-//		return postRepository.findAllByPublished();
-//	}
+	public List<Post> getAllPublished() {
+		return postRepository.findAllByPublished(true);
+	}
+	
+	public List<Post> getAllNotPublished() {
+		return postRepository.findAllByPublished(false);
+	}
 
 //	public Post getPublishedById(Long id) {
 //		boolean exists = postRepository.existsById(id);
 //		if (!exists) {
 //			throw new IllegalStateException("Post with id '" + id + "' does not exists !");
 //		}
+//		Post p = postRepository.getById(id);
 //		return postRepository.findByPublished(id);
 //	}
 
-//	public void publish(Long id) {
-//		Optional<Post> p = postRepository.findById(id);
-//		if (!p.isPresent()) {
-//			throw new IllegalStateException("Post with id '" + id + "' does not exists !");
-//		}
-//		Post _p = p.get();
-//		if (_p.isPublished()) {
-//			throw new IllegalStateException("Post with id '" + id + "' Already Published !");
-//		}
-//		_p.setPublished(true);
-//		postRepository.save(_p);
-//	}
+	public void publish(Long id) {
+		boolean exists = postRepository.existsById(id);
+		if (!exists) {
+			throw new IllegalStateException("Post with id '" + id + "' does not exists !");
+		}
+		Post _p = postRepository.findById(id).get();
+		if (_p.isPublished()) {
+			throw new IllegalStateException("Post with id '" + id + "' Already Published !");
+		}
+		_p.setPublished(true);
+		postRepository.save(_p);
+	}
+	
+	public void unpublish(Long id) {
+		boolean exists = postRepository.existsById(id);
+		if (!exists) {
+			throw new IllegalStateException("Post with id '" + id + "' does not exists !");
+		}
+		Post _p = postRepository.findById(id).get();
+		if (!_p.isPublished()) {
+			throw new IllegalStateException("Post with id '" + id + "' Already UnPublished !");
+		}
+		_p.setPublished(false);
+		postRepository.save(_p);
+	}
 
 }

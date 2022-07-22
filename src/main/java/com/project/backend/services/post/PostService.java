@@ -90,7 +90,7 @@ public class PostService {
 
 	public void publish(Long id) {
 		Optional<Post> p = postRepository.findById(id);
-		if (p.isEmpty()) {
+		if (!p.isPresent()) {
 			throw new IllegalStateException("Post with id '" + id + "' does not exists !");
 		}
 		Post _p = p.get();

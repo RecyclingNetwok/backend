@@ -75,4 +75,26 @@ public class PostService {
 	public void update(Post p) {
 		postRepository.save(p);
 	}
+	
+	public List<Post> getAllPublished(){
+		return postRepository.findAllByPublished();
+	}
+	
+	public Post getPublishedById(Long id) {
+		boolean exists = postRepository.existsById(id);
+		if(!exists) {
+			throw new IllegalStateException("Post with id '"+id+"' does not exists !");
+		}
+		return postRepository.findByPublished(id);
+	}
+	
+	public void publish(Long id) {
+		Optional<Post> p = postRepository.findById(id);
+		if(p.isEmpty()) {
+			throw new IllegalStateException("Post with id '"+id+"' does not exists !");
+		}
+		Post _p = p.get();
+		_p.setPublished(true);
+		postRepository.save(_p);
+	}
 }

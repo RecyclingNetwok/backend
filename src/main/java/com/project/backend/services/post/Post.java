@@ -50,6 +50,14 @@ public class Post {
 	
 	private String imageTitle;
 	
+	private boolean published;
+	
+	private String meta_title;
+	
+	private String meta_description;
+	
+	private String content;
+	
 	@CreationTimestamp
 	private LocalDate createOn;
 	
@@ -135,6 +143,38 @@ public class Post {
 
 	public void setCom_id(Long com_id) {
 		this.com_id = com_id;
+	}
+
+	public boolean isPublished() {
+		return published;
+	}
+
+	public void setPublished(boolean published) {
+		this.published = published;
+	}
+
+	public String getMeta_title() {
+		return meta_title;
+	}
+
+	public void setMeta_title(String meta_title) {
+		this.meta_title = meta_title;
+	}
+
+	public String getMeta_description() {
+		return meta_description;
+	}
+
+	public void setMeta_description(String meta_description) {
+		this.meta_description = meta_description;
+	}
+
+	public String getContent() {
+		return content;
+	}
+
+	public void setContent(String content) {
+		this.content = content;
 	}
 
 	@Override

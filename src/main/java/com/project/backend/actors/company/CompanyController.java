@@ -41,6 +41,16 @@ public class CompanyController {
 		return companyService.getCompanyByID(id);
 	}
 	
+	@GetMapping("/verified")
+	public List<Company> getCompanyVerified() {
+		return companyService.getVerifiedCompanies();
+	}
+	
+	@GetMapping("/not-verified")
+	public List<Company> getCompanyNotVerified() {
+		return companyService.getNotVerifiedCompanies();
+	}
+	
 	@PostMapping("/add")
 	public void addNewCompany(@RequestBody Company company) {
 		companyService.addNewCompany(company);
@@ -64,5 +74,10 @@ public class CompanyController {
 	@PutMapping("/update-pwd")
 	public void UpdatePwd(@RequestBody SignupRequest request) {
 		companyService.updatePwd(request);
+	}
+	
+	@PutMapping("/update-ver")
+	public void UpdateVerified(@RequestBody SignupRequest request) {
+		companyService.updateVerified(request);
 	}
 }
